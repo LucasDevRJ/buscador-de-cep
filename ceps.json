@@ -1,26 +1,14 @@
 [
   {
-    "cep": "22452-100",
-    "logradouro": "Rua Dom Eugênio Salles",
+    "cep": "22710-270",
+    "logradouro": "Rua Itagua",
     "complemento": "",
-    "bairro": "Vidigal",
+    "bairro": "Taquara",
     "localidade": "Rio de Janeiro",
     "uf": "RJ",
     "ibge": "3304557",
     "gia": "",
     "ddd": "21",
     "siafi": "6001"
-  },
-  {
-    "cep": "23935-195",
-    "logradouro": "Escada de Jacó",
-    "complemento": "",
-    "bairro": "Parque Belém (Cunhambebe)",
-    "localidade": "Angra dos Reis",
-    "uf": "RJ",
-    "ibge": "3300100",
-    "gia": "",
-    "ddd": "24",
-    "siafi": "5801"
   }
 ]

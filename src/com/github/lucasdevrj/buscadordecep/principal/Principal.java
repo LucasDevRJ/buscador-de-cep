@@ -11,6 +11,7 @@ import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -20,11 +21,21 @@ public class Principal {
         Gson gson = ImportaGson.importar();
 
         Scanner entrada = new Scanner(System.in);
-        String cepDigitado = "";
-        do {
+
+        System.out.println("1 - Acessar CEP");
+        System.out.println("Qualquer Tecla - Sair");
+        System.out.print("Digite a opção desejada: ");
+        int opcao = 0;
+        try {
+            opcao = entrada.nextInt();
+        } catch (InputMismatchException e) {
+            e.getMessage();
+        }
+
+        while (opcao == 1) {
             try {
-                System.out.print("Digite o CEP desejado ou 0 para sair: ");
-                cepDigitado = entrada.next();
+                System.out.print("Digite o CEP desejado: ");
+                String cepDigitado = entrada.next();
 
                 String urlViaCep = "https://viacep.com.br/ws/" + cepDigitado + "/json/";
 
@@ -40,12 +51,19 @@ public class Principal {
                 arquivo.gravar(ceps);
                 arquivo.ler();
             } catch (IllegalStateException e) {
-                System.out.println(e.getMessage());
+                System.err.println("Erro: operação inválida");
             } catch (JsonSyntaxException e) {
-                System.out.println(e.getMessage());
+                System.err.println("Erro: JSON com formato inválido!");
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.err.println("Erro: caracter inválido");
             }
-        } while (cepDigitado != "0");
+
+            System.out.println("1 - Acessar CEP");
+            System.out.println("Qualquer Tecla - Sair");
+            System.out.print("Digite a opção desejada: ");
+            opcao = entrada.nextInt();
+        }
+
+        System.out.println("Programa finalizado.");
     }
 }
