@@ -1,6 +1,8 @@
 package com.github.lucasdevrj.buscadordecep.principal;
 
 import com.github.lucasdevrj.buscadordecep.CriaConexaoHttp;
+import com.github.lucasdevrj.buscadordecep.GravacaoArquivo;
+import com.github.lucasdevrj.buscadordecep.Serializacao;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -13,6 +15,9 @@ public class Principal {
         String cepDigitado = entrada.next();
 
         CriaConexaoHttp conexaoHttp = new CriaConexaoHttp();
-        conexaoHttp.cria(cepDigitado);
+        String json = conexaoHttp.cria(cepDigitado);
+
+        Serializacao serializacao = new Serializacao();
+        serializacao.serializar(json);
     }
 }
