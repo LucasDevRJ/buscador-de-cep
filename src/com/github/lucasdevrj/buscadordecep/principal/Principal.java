@@ -25,14 +25,9 @@ public class Principal {
         System.out.println("1 - Acessar CEP");
         System.out.println("Qualquer Tecla - Sair");
         System.out.print("Digite a opção desejada: ");
-        int opcao = 0;
-        try {
-            opcao = entrada.nextInt();
-        } catch (InputMismatchException e) {
-            e.getMessage();
-        }
+        String opcao = entrada.next();
 
-        while (opcao == 1) {
+        while (opcao.equals("1")) {
             try {
                 System.out.print("Digite o CEP desejado: ");
                 String cepDigitado = entrada.next();
@@ -61,7 +56,7 @@ public class Principal {
             System.out.println("1 - Acessar CEP");
             System.out.println("Qualquer Tecla - Sair");
             System.out.print("Digite a opção desejada: ");
-            opcao = entrada.nextInt();
+            opcao = entrada.next();
         }
 
         System.out.println("Programa finalizado.");
