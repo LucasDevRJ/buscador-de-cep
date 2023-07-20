@@ -1,9 +1,9 @@
 [
   {
-    "cep": "23530-076",
-    "logradouro": "Travessa da Estiva",
+    "cep": "22452-100",
+    "logradouro": "Rua Dom Eugênio Salles",
     "complemento": "",
-    "bairro": "Sepetiba",
+    "bairro": "Vidigal",
     "localidade": "Rio de Janeiro",
     "uf": "RJ",
     "ibge": "3304557",
@@ -12,15 +12,15 @@
     "siafi": "6001"
   },
   {
-    "cep": "24755-220",
-    "logradouro": "Rua Gomes Novaes",
+    "cep": "23935-195",
+    "logradouro": "Escada de Jacó",
     "complemento": "",
-    "bairro": "Tribobó",
-    "localidade": "São Gonçalo",
+    "bairro": "Parque Belém (Cunhambebe)",
+    "localidade": "Angra dos Reis",
     "uf": "RJ",
-    "ibge": "3304904",
+    "ibge": "3300100",
     "gia": "",
-    "ddd": "21",
-    "siafi": "5897"
+    "ddd": "24",
+    "siafi": "5801"
   }
 ]

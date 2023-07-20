@@ -3,13 +3,11 @@ package com.github.lucasdevrj.buscadordecep.aquivos;
 import com.github.lucasdevrj.buscadordecep.dependencias.ImportaGson;
 import com.github.lucasdevrj.buscadordecep.modelos.Cep;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -30,7 +28,6 @@ public class Arquivo {
             String linha = scanner.nextLine();
             System.out.println(linha);
         }
-
         scanner.close();
     }
 }
