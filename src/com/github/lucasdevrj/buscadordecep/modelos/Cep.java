@@ -11,4 +11,13 @@ public class Cep {
     private String gia;
     private String ddd;
     private String siafi;
+    public Cep(ViaCep viaCep) {
+        this.cep = viaCep.cep();
+        this.logradouro = viaCep.logradouro();
+        this.complemento = viaCep.complemento();
+        this.bairro = viaCep.bairro();
+        this.localidade = viaCep.localidade();
+        this.uf = viaCep.uf();
+        this.ddd = viaCep.ddd();
+    }
 }
