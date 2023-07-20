@@ -1,0 +1,26 @@
+[
+  {
+    "cep": "23530-076",
+    "logradouro": "Travessa da Estiva",
+    "complemento": "",
+    "bairro": "Sepetiba",
+    "localidade": "Rio de Janeiro",
+    "uf": "RJ",
+    "ibge": "3304557",
+    "gia": "",
+    "ddd": "21",
+    "siafi": "6001"
+  },
+  {
+    "cep": "24755-220",
+    "logradouro": "Rua Gomes Novaes",
+    "complemento": "",
+    "bairro": "Tribobó",
+    "localidade": "São Gonçalo",
+    "uf": "RJ",
+    "ibge": "3304904",
+    "gia": "",
+    "ddd": "21",
+    "siafi": "5897"
+  }
+]

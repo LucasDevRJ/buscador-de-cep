@@ -1,4 +1,4 @@
-package com.github.lucasdevrj.buscadordecep;
+package com.github.lucasdevrj.buscadordecep.conexoes;
 
 import java.io.IOException;
 import java.net.URI;

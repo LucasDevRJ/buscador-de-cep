@@ -11,6 +11,7 @@ public class Cep {
     private String gia;
     private String ddd;
     private String siafi;
+
     public Cep(ViaCep viaCep) {
         this.cep = viaCep.cep();
         this.logradouro = viaCep.logradouro();

@@ -1,53 +1,51 @@
 package com.github.lucasdevrj.buscadordecep.principal;
 
-import com.github.lucasdevrj.buscadordecep.ConexaoHttp;
+import com.github.lucasdevrj.buscadordecep.conexoes.ConexaoHttp;
+import com.github.lucasdevrj.buscadordecep.aquivos.Arquivo;
+import com.github.lucasdevrj.buscadordecep.dependencias.ImportaGson;
 import com.github.lucasdevrj.buscadordecep.modelos.Cep;
 import com.github.lucasdevrj.buscadordecep.modelos.ViaCep;
-import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
+    private static List<Cep> ceps = new ArrayList<>();
     public static void main(String[] args) throws IOException, InterruptedException {
-        Gson gson = new GsonBuilder()
-                .setPrettyPrinting()
-                .create();
+        Gson gson = ImportaGson.importar();
 
         Scanner entrada = new Scanner(System.in);
+        String cepDigitado = "";
+        do {
+            try {
+                System.out.print("Digite o CEP desejado ou 0 para sair: ");
+                cepDigitado = entrada.next();
 
-        System.out.print("Digite o CEP desejado ou 0 para sair: ");
-        String cepDigitado = entrada.next();
+                String urlViaCep = "https://viacep.com.br/ws/" + cepDigitado + "/json/";
 
-        String urlViaCep = "https://viacep.com.br/ws/" + cepDigitado + "/json/";
+                ConexaoHttp conexaoHttp = new ConexaoHttp();
+                String json = conexaoHttp.cria(urlViaCep);
 
-        ConexaoHttp conexaoHttp = new ConexaoHttp();
-        String json = conexaoHttp.cria(urlViaCep);
+                ViaCep viaCep = gson.fromJson(json, ViaCep.class);
 
-        ViaCep viaCep = gson.fromJson(json, ViaCep.class);
+                Cep cep = new Cep(viaCep);
+                ceps.add(cep);
 
-        Cep cep = new Cep(viaCep);
-
-        FileWriter escrita = new FileWriter("cep.json");
-        escrita.write(gson.toJson(cep));
-        escrita.close();
-
-        File arquivo = new File("cep.json");
-        Scanner scanner = new Scanner(arquivo);
-
-        while (scanner.hasNextLine()) {
-            String linha = scanner.nextLine();
-            System.out.println(linha);
-        }
-
-        scanner.close();
+                Arquivo arquivo = new Arquivo();
+                arquivo.gravar(ceps);
+                arquivo.ler();
+            } catch (IllegalStateException e) {
+                System.out.println(e.getMessage());
+            } catch (JsonSyntaxException e) {
+                System.out.println(e.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+        } while (cepDigitado != "0");
     }
 }
