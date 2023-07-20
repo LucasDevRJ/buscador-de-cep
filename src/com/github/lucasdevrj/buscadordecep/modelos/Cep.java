@@ -18,6 +18,9 @@ public class Cep {
         this.bairro = viaCep.bairro();
         this.localidade = viaCep.localidade();
         this.uf = viaCep.uf();
+        this.ibge = viaCep.ibge();
+        this.gia = viaCep.gia();
         this.ddd = viaCep.ddd();
+        this.siafi = viaCep.siafi();
     }
 }
