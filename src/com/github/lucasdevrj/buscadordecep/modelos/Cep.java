@@ -23,4 +23,20 @@ public class Cep {
         this.ddd = viaCep.ddd();
         this.siafi = viaCep.siafi();
     }
+
+    @Override
+    public String toString() {
+        return "Cep{" +
+                "cep='" + cep + '\'' +
+                ", logradouro='" + logradouro + '\'' +
+                ", complemento='" + complemento + '\'' +
+                ", bairro='" + bairro + '\'' +
+                ", localidade='" + localidade + '\'' +
+                ", uf='" + uf + '\'' +
+                ", ibge='" + ibge + '\'' +
+                ", gia='" + gia + '\'' +
+                ", ddd='" + ddd + '\'' +
+                ", siafi='" + siafi + '\'' +
+                '}';
+    }
 }
