@@ -1,11 +1,14 @@
 package com.github.lucasdevrj.buscadordecep.principal;
 
+import com.github.lucasdevrj.buscadordecep.ConexaoHttp;
 import com.github.lucasdevrj.buscadordecep.modelos.Cep;
 import com.github.lucasdevrj.buscadordecep.modelos.ViaCep;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -26,20 +29,25 @@ public class Principal {
 
         String urlViaCep = "https://viacep.com.br/ws/" + cepDigitado + "/json/";
 
-        HttpClient client = HttpClient.newHttpClient();
-
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(urlViaCep))
-                .build();
-
-        HttpResponse<String> response = client
-                .send(request, HttpResponse.BodyHandlers.ofString());
-        String json = response.body();
-        System.out.println(json);
+        ConexaoHttp conexaoHttp = new ConexaoHttp();
+        String json = conexaoHttp.cria(urlViaCep);
 
         ViaCep viaCep = gson.fromJson(json, ViaCep.class);
 
         Cep cep = new Cep(viaCep);
-        System.out.println(cep);
+
+        FileWriter escrita = new FileWriter("cep.json");
+        escrita.write(gson.toJson(cep));
+        escrita.close();
+
+        File arquivo = new File("cep.json");
+        Scanner scanner = new Scanner(arquivo);
+
+        while (scanner.hasNextLine()) {
+            String linha = scanner.nextLine();
+            System.out.println(linha);
+        }
+
+        scanner.close();
     }
 }
