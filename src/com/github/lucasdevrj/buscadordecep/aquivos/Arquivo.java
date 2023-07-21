@@ -13,16 +13,23 @@ import java.util.Scanner;
 
 public class Arquivo {
     Gson gson = ImportaGson.importar();
-    public FileWriter gravar(List<Endereco> enderecos) throws IOException {
-        FileWriter escrita = new FileWriter("enderecos.json");
-        escrita.write(gson.toJson(enderecos));
-        escrita.close();
+    public FileWriter gravar(List<Endereco> enderecos) {
+        FileWriter escrita = null;
+        try {
+            escrita = new FileWriter("");
+            escrita.write(gson.toJson(enderecos));
+            escrita.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("Erro: não foi possivel criar o arquivo!");
+        } catch (IOException e) {
+            System.err.println("Erro: não foi possivel gravar no arquivo!");
+        }
         return escrita;
     }
 
     public void ler() {
         try {
-            File arquivo = new File(".json");
+            File arquivo = new File("enderecos.json");
             Scanner scanner = new Scanner(arquivo);
 
             while (scanner.hasNextLine()) {
