@@ -1,7 +1,7 @@
 package com.github.lucasdevrj.buscadordecep.aquivos;
 
 import com.github.lucasdevrj.buscadordecep.dependencias.ImportaGson;
-import com.github.lucasdevrj.buscadordecep.modelos.Cep;
+import com.github.lucasdevrj.buscadordecep.modelos.Endereco;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -13,15 +13,15 @@ import java.util.Scanner;
 
 public class Arquivo {
     Gson gson = ImportaGson.importar();
-    public FileWriter gravar(List<Cep> ceps) throws IOException {
-        FileWriter escrita = new FileWriter("ceps.json");
-        escrita.write(gson.toJson(ceps));
+    public FileWriter gravar(List<Endereco> enderecos) throws IOException {
+        FileWriter escrita = new FileWriter("enderecos.json");
+        escrita.write(gson.toJson(enderecos));
         escrita.close();
         return escrita;
     }
 
     public void ler() throws FileNotFoundException {
-        File arquivo = new File("ceps.json");
+        File arquivo = new File("enderecos.json");
         Scanner scanner = new Scanner(arquivo);
 
         while (scanner.hasNextLine()) {

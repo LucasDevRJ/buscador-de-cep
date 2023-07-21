@@ -1,6 +1,6 @@
 package com.github.lucasdevrj.buscadordecep.modelos;
 
-public class Cep {
+public class Endereco {
     private String cep;
     private String logradouro;
     private String complemento;
@@ -12,7 +12,7 @@ public class Cep {
     private String ddd;
     private String siafi;
 
-    public Cep(ViaCep viaCep) {
+    public Endereco(EnderecoViaCepApi viaCep) {
         this.cep = viaCep.cep();
         this.logradouro = viaCep.logradouro();
         this.complemento = viaCep.complemento();
@@ -23,21 +23,5 @@ public class Cep {
         this.gia = viaCep.gia();
         this.ddd = viaCep.ddd();
         this.siafi = viaCep.siafi();
-    }
-
-    @Override
-    public String toString() {
-        return "Cep{" +
-                "cep='" + cep + '\'' +
-                ", logradouro='" + logradouro + '\'' +
-                ", complemento='" + complemento + '\'' +
-                ", bairro='" + bairro + '\'' +
-                ", localidade='" + localidade + '\'' +
-                ", uf='" + uf + '\'' +
-                ", ibge='" + ibge + '\'' +
-                ", gia='" + gia + '\'' +
-                ", ddd='" + ddd + '\'' +
-                ", siafi='" + siafi + '\'' +
-                '}';
     }
 }

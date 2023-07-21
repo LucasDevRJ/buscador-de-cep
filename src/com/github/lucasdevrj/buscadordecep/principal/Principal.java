@@ -3,20 +3,18 @@ package com.github.lucasdevrj.buscadordecep.principal;
 import com.github.lucasdevrj.buscadordecep.conexoes.ConexaoHttp;
 import com.github.lucasdevrj.buscadordecep.aquivos.Arquivo;
 import com.github.lucasdevrj.buscadordecep.dependencias.ImportaGson;
-import com.github.lucasdevrj.buscadordecep.modelos.Cep;
-import com.github.lucasdevrj.buscadordecep.modelos.ViaCep;
+import com.github.lucasdevrj.buscadordecep.modelos.Endereco;
+import com.github.lucasdevrj.buscadordecep.modelos.EnderecoViaCepApi;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
-    private static List<Cep> ceps = new ArrayList<>();
+    private static List<Endereco> enderecos = new ArrayList<>();
     public static void main(String[] args) throws IOException, InterruptedException {
         Gson gson = ImportaGson.importar();
 
@@ -37,20 +35,20 @@ public class Principal {
                 ConexaoHttp conexaoHttp = new ConexaoHttp();
                 String json = conexaoHttp.cria(urlViaCep);
 
-                ViaCep viaCep = gson.fromJson(json, ViaCep.class);
+                EnderecoViaCepApi viaCep = gson.fromJson(json, EnderecoViaCepApi.class);
 
-                Cep cep = new Cep(viaCep);
-                ceps.add(cep);
+                Endereco cep = new Endereco(viaCep);
+                enderecos.add(cep);
 
                 Arquivo arquivo = new Arquivo();
-                arquivo.gravar(ceps);
+                arquivo.gravar(enderecos);
                 arquivo.ler();
             } catch (IllegalStateException e) {
-                System.err.println("Erro: operação inválida");
+                System.err.println("Erro: operação inválida!");
             } catch (JsonSyntaxException e) {
                 System.err.println("Erro: JSON com formato inválido!");
             } catch (IllegalArgumentException e) {
-                System.err.println("Erro: caracter inválido");
+                System.err.println("Erro: caracter inválido!");
             }
 
             System.out.println("1 - Acessar CEP");
