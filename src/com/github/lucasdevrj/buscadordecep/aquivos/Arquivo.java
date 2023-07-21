@@ -20,14 +20,18 @@ public class Arquivo {
         return escrita;
     }
 
-    public void ler() throws FileNotFoundException {
-        File arquivo = new File("enderecos.json");
-        Scanner scanner = new Scanner(arquivo);
+    public void ler() {
+        try {
+            File arquivo = new File(".json");
+            Scanner scanner = new Scanner(arquivo);
 
-        while (scanner.hasNextLine()) {
-            String linha = scanner.nextLine();
-            System.out.println(linha);
+            while (scanner.hasNextLine()) {
+                String linha = scanner.nextLine();
+                System.out.println(linha);
+            }
+            scanner.close();
+        } catch (FileNotFoundException e) {
+            System.err.println("Erro: arquivo não encontrado!");
         }
-        scanner.close();
     }
 }
