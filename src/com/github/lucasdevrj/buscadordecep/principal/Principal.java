@@ -10,53 +10,78 @@ import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
 public class Principal {
-    private static List<Endereco> enderecos = new ArrayList<>();
+    public static List<Endereco> enderecos = new ArrayList<>();
+    public static Scanner entrada = new Scanner(System.in);
+
+    public static Arquivo arquivo = new Arquivo();
+    public static Gson gson = ImportaGson.importar();
     public static void main(String[] args) throws IOException, InterruptedException {
-        Gson gson = ImportaGson.importar();
+        exibeMenu();
+    }
 
-        Scanner entrada = new Scanner(System.in);
+    public static void exibeMenu() {
+       try {
+           String menu = """
+                   1 - Acessar CEP
+                   2 - Listar CEP's
+                   Qualquer Tecla - Sair
+                   """;
+           System.out.println(menu);
+           System.out.print("Digite a opção desejada: ");
+           int opcao = Integer.parseInt(entrada.next());
 
-        System.out.println("1 - Acessar CEP");
-        System.out.println("Qualquer Tecla - Sair");
-        System.out.print("Digite a opção desejada: ");
-        String opcao = entrada.next();
+           switch (opcao) {
+               case 1:
+                   acessarCep();
+                   break;
 
-        while (opcao.equals("1")) {
-            try {
-                System.out.print("Digite o CEP desejado: ");
-                String cepDigitado = entrada.next();
+               case 2:
+                   listarCeps();
+                   break;
+           }
+       } catch (InputMismatchException | NumberFormatException e) {
+           System.out.println("Programa finalizado.");
+       }
+    }
 
-                String urlViaCep = "https://viacep.com.br/ws/" + cepDigitado + "/json/";
+    public static void acessarCep() {
+        try {
+            System.out.print("Digite o CEP desejado: ");
+            String cepDigitado = entrada.next();
 
-                ConexaoHttp conexaoHttp = new ConexaoHttp();
-                String json = conexaoHttp.cria(urlViaCep);
+            String urlViaCep = "https://viacep.com.br/ws/" + cepDigitado + "/json/";
 
-                EnderecoViaCepApi viaCep = gson.fromJson(json, EnderecoViaCepApi.class);
+            ConexaoHttp conexaoHttp = new ConexaoHttp();
+            String json = conexaoHttp.cria(urlViaCep);
 
-                Endereco cep = new Endereco(viaCep);
-                enderecos.add(cep);
+            EnderecoViaCepApi viaCep = gson.fromJson(json, EnderecoViaCepApi.class);
 
-                Arquivo arquivo = new Arquivo();
-                arquivo.gravar(enderecos);
-                arquivo.ler();
-            } catch (IllegalStateException e) {
-                System.err.println("Erro: operação inválida!");
-            } catch (JsonSyntaxException e) {
-                System.err.println("Erro: JSON com formato inválido!");
-            } catch (IllegalArgumentException e) {
-                System.err.println("Erro: caracter inválido!");
-            }
+            Endereco endereco = new Endereco(viaCep);
+            System.out.println(endereco);
+            enderecos.add(endereco);
 
-            System.out.println("1 - Acessar CEP");
-            System.out.println("Qualquer Tecla - Sair");
-            System.out.print("Digite a opção desejada: ");
-            opcao = entrada.next();
+            arquivo.gravar(enderecos);
+        } catch (IllegalStateException e) {
+            System.err.println("Erro: operação inválida!");
+        } catch (JsonSyntaxException e) {
+            System.err.println("Erro: JSON com formato inválido!");
+        } catch (IllegalArgumentException e) {
+            System.err.println("Erro: caracter inválido!");
         }
 
-        System.out.println("Programa finalizado.");
+        System.out.println("1 - Acessar CEP");
+        System.out.println("2 - Listar CEP's");
+        System.out.println("Qualquer Tecla - Sair");
+        System.out.print("Digite a opção desejada: ");
+        int opcao = Integer.parseInt(entrada.next());
+    }
+
+    public static void listarCeps() {
+        arquivo.ler();
     }
 }

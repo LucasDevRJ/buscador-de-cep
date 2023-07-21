@@ -16,7 +16,7 @@ public class Arquivo {
     public FileWriter gravar(List<Endereco> enderecos) {
         FileWriter escrita = null;
         try {
-            escrita = new FileWriter("");
+            escrita = new FileWriter("enderecos.json");
             escrita.write(gson.toJson(enderecos));
             escrita.close();
         } catch (FileNotFoundException e) {

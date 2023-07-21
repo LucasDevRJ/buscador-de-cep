@@ -24,4 +24,19 @@ public class Endereco {
         this.ddd = viaCep.ddd();
         this.siafi = viaCep.siafi();
     }
+
+    @Override
+    public String toString() {
+        return "Endereço: {" +
+                "\n\tCEP: " + this.cep +
+                "\n\tLogradouro: " + this.logradouro +
+                "\n\tComplemento: " + this.complemento +
+                "\n\tBairro: " + this.bairro +
+                "\n\tLocalidade: " + this.localidade +
+                "\n\tUF: " + this.uf +
+                "\n\tIBGE: " + this.ibge +
+                "\n\tGIA: " + this.gia +
+                "\n\tDDD: " + this.ddd +
+                "\n\tSIAF: " + this.siafi;
+    }
 }
