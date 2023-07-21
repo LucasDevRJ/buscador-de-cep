@@ -51,21 +51,18 @@ public class Endereco {
             String cepDigitado = entrada.next();
 
             String url = "https://viacep.com.br/ws/" + cepDigitado + "/json/";
-            System.out.println(url);
 
             ConexaoHttp conexaoHttp = new ConexaoHttp();
             String json = conexaoHttp.cria(url);
-            System.out.println(json);
 
             EnderecoViaCepApi urlViaCep = gson.fromJson(json, EnderecoViaCepApi.class);
-            System.out.println(urlViaCep);
 
             Endereco endereco = new Endereco(urlViaCep);
+            System.out.println();
             System.out.println(endereco);
-
             enderecos.add(endereco);
-            System.out.println(enderecos);
             arquivo.gravar(enderecos);
+
         } catch (IllegalStateException e) {
             System.err.println("Erro: operação inválida!");
         } catch (JsonSyntaxException e) {

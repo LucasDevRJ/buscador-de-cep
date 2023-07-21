@@ -14,6 +14,7 @@ public class Principal {
        try {
            Scanner entrada = new Scanner(System.in);
            String menu = """
+                   --------------------|BUSCADOR DE CEP|--------------------
                    1 - Acessar CEP
                    2 - Listar CEP's
                    Qualquer Tecla - Sair
@@ -33,5 +34,6 @@ public class Principal {
        } catch (InputMismatchException | NumberFormatException e) {
            System.out.println("Programa finalizado.");
        }
+        System.out.println("---------------------------------------------------------");
     }
 }
