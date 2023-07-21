@@ -2,6 +2,7 @@ package com.github.lucasdevrj.buscadordecep.aquivos;
 
 import com.github.lucasdevrj.buscadordecep.dependencias.ImportaGson;
 import com.github.lucasdevrj.buscadordecep.modelos.Endereco;
+import com.github.lucasdevrj.buscadordecep.principal.Principal;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -12,7 +13,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Arquivo {
-    Gson gson = ImportaGson.importar();
+    Gson gson = ImportaGson.criar();
     public FileWriter gravar(List<Endereco> enderecos) {
         FileWriter escrita = null;
         try {
@@ -32,11 +33,16 @@ public class Arquivo {
             File arquivo = new File("enderecos.json");
             Scanner scanner = new Scanner(arquivo);
 
-            while (scanner.hasNextLine()) {
-                String linha = scanner.nextLine();
-                System.out.println(linha);
+            if (!scanner.hasNextLine()) {
+                System.out.println("Não há CEP's cadastrados!");
+            } else {
+                while (scanner.hasNextLine()) {
+                    String linha = scanner.nextLine();
+                    System.out.println(linha);
+                }
+                scanner.close();
             }
-            scanner.close();
+            Principal.exibeMenu();
         } catch (FileNotFoundException e) {
             System.err.println("Erro: arquivo não encontrado!");
         }

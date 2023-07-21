@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class ImportaGson {
-    public static Gson importar() {
+    public static Gson criar() {
         Gson gson = new GsonBuilder()
                 .setPrettyPrinting()
                 .create();
