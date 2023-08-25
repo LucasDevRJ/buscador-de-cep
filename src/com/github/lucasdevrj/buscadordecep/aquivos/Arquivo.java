@@ -45,6 +45,7 @@ public class Arquivo {
             Principal.exibeMenu();
         } catch (FileNotFoundException e) {
             System.err.println("Erro: arquivo não encontrado!");
+            Principal.exibeMenu();
         }
     }
 }

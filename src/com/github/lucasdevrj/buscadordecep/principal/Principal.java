@@ -33,7 +33,7 @@ public class Principal {
            }
        } catch (InputMismatchException | NumberFormatException e) {
            System.out.println("Programa finalizado.");
+           System.out.println("---------------------------------------------------------");
        }
-        System.out.println("---------------------------------------------------------");
     }
 }

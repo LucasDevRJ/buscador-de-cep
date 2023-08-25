@@ -79,7 +79,7 @@ public class Endereco {
 
     @Override
     public String toString() {
-        return "Endereço: {" +
+        return "Endereço: " +
                 "\n\tCEP: " + this.cep +
                 "\n\tLogradouro: " + this.logradouro +
                 "\n\tComplemento: " + this.complemento +
