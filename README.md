@@ -1,5 +1,5 @@
+![Capa LucasDevRJ](https://github.com/LucasDevRJ/buscador-de-cep/assets/95040236/f25891cf-5465-493b-914f-b919a6daed5e)
 
-![Capa LucasDevRJ](https://github.com/LucasDevRJ/se-vista-como-dev/assets/95040236/b8060c66-f668-4ccb-a5f7-b6e29e436bd1)
 <h1 align="center">Buscador de CEP</h1>
 
 ![Badge do Desenvolvedor](https://img.shields.io/badge/Desenvolvedor-LucasDevRJ-%23000000)
@@ -22,7 +22,7 @@ O projeto é um sistema que consome a API [ViaCEP](https://viacep.com.br/), a qu
 - `Funcionalidade 2`: listar CEPs acessados
 - `Funcionalidade 3`: Sair do programa
 
-https://github.com/LucasDevRJ/se-vista-como-dev/assets/95040236/7430e406-2fc3-4a76-bfc3-89f8b943bb2e
+https://github.com/LucasDevRJ/buscador-de-cep/assets/95040236/693f120d-eb05-431e-ab06-ec2cd73e9e8f
 
 # :file_folder: Acesso ao projeto
 
